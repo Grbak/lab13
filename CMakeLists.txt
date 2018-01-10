@@ -1,20 +1,23 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.2.2)
 
+
+set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include(cmake/HunterGate.cmake)
 
 HunterGate(
-    URL "https://github.com/Grbak/hunter/archive/v0.19.137.1.tar.gz"
-    SHA1 "a0d1e333acb270b96cad7419e286471b568d968f"
+    URL "https://github.com/ruslo/hunter/archive/v0.19.167.tar.gz"
+    SHA1 "244a13718ea2e6c0c8998d15559c7e459f615708"
+    LOCAL
 )
 
-project(main)
-hunter_add_package(CURL)
-find_package(CURL CONFIG REQUIRED)
-hunter_add_package(OpenSSL)
-find_package(OpenSSL REQUIRED)
+project(pack)
+hunter_add_package(yaml-cpp)
+find_package(yaml-cpp CONFIG REQUIRED)
 
-add_executable(main ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
-target_link_libraries(main PRIVATE CURL::libcurl OpenSSL::SSL OpenSSL::Crypto)
-
-install(TARGETS main RUNTIME DESTINATION bin)
+add_executable(pack ${CMAKE_CURRENT_SOURCE_DIR}/sources/pack.cpp)
+target_link_libraries(pack yaml-cpp::yaml-cpp)
+add_executable(unpack ${CMAKE_CURRENT_SOURCE_DIR}/sources/unpack.cpp)
+target_link_libraries(unpack yaml-cpp::yaml-cpp)
