@@ -26,7 +26,7 @@ Person getInfo() {
 	file.last_name = "Dybok";
 	file.email.nickname = "eden91hazard@gmail.com";
 	file.age = 19;
-	file.phone = "8(8916)952-71-44";
+	file.phone = "8(916)952-71-44";
 	return file;
 }
 
