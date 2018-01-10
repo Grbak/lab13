@@ -17,3 +17,4 @@ script:
 - ./pack config.yaml
 - cat config.yaml
 - ./unpack config.yaml
+- yamllint config.yaml
